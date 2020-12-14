@@ -1,14 +1,17 @@
+"""
+Code for the monte carlo agents.
+"""
 from logic2048 import Game2048
 import random, copy
 import sys
+import os
 import time
 from datetime import timedelta
 
 NUM_ITERS = 100       
 NUM_TRIALS = 100
 EVAL_METHOD = 0
-
-RESULTS_FOLDER = "Experiment_Results"
+RESULTS_FOLDER = "../Experiment_Results/"
 
 def random_run(game):
     game_copy = copy.deepcopy(game)
@@ -51,7 +54,6 @@ def monte_carlo_run():
     game = Game2048()
     i = 0
     while not game.game_end:
-        print("Iteration: ", i)
         monte_carlo_iter(game)
         i += 1
 
@@ -90,20 +92,23 @@ def main():
     max_val_avg = sum(max_val_results) / NUM_TRIALS
     total_merge_avg = sum(total_merge_score) / NUM_TRIALS
 
-    f = open("monte_carlo_" + str(NUM_ITERS) + "_" + str(NUM_TRIALS) + "_" + str(EVAL_METHOD) + ".txt", "w")
+    file_name = "monte_carlo_" + str(NUM_ITERS) + "_" + str(NUM_TRIALS) + "_" + str(EVAL_METHOD) + ".txt"
+    f = open(os.path.join(RESULTS_FOLDER, file_name), "w")
     f.write("avg max val: " + str(max_val_avg) + "\n") 
     f.write("avg total sum: " + str(total_sum_avg) + "\n")
     f.write("avg merge score: " + str(total_merge_avg) + "\n")
     f.write("max vals: " + str(max_val_results) + "\n") 
     f.write("total sums: " + str(total_sum_results) + "\n")
     f.write("total merge score: " + str(total_merge_score) + "\n")
+    f.write("time taken: " + str(timedelta(seconds=(end_time - start_time))))
     f.close()
 
+    print()
     print("total sum avg: " + str(total_sum_avg))
     print("max val avg: " + str(max_val_avg))
     print("merge score avg: " + str(total_merge_avg))
     print()
-    print("time taken: ", str(timedelta(seconds=(end_time - start_time))))
+    print("time taken: " + str(timedelta(seconds=(end_time - start_time))))
 
 if __name__ == '__main__':
     main()

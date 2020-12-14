@@ -1,3 +1,7 @@
+"""
+The game class for 2048.
+"""
+
 import random
 import copy
 
