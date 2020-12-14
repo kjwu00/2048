@@ -8,6 +8,8 @@ NUM_ITERS = 100
 NUM_TRIALS = 100
 EVAL_METHOD = 0
 
+RESULTS_FOLDER = "Experiment_Results"
+
 def random_run(game):
     game_copy = copy.deepcopy(game)
     while not game_copy.game_end: 
@@ -44,11 +46,6 @@ def monte_carlo_iter(game):
 
     best_move = total_score.index(max(total_score))
     game.make_move(best_move)
-    print(game)
-    # print(game.max_num())
-    # print(game.get_sum())
-    # print(game.get_merge_score())
-    # print("--------------------")
 
 def monte_carlo_run():
     game = Game2048()

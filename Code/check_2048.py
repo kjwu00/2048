@@ -1,5 +1,5 @@
 import statistics
-filename = "monte_carlo_50_100_0.txt"
+filename = "Experiment_Results/monte_carlo_50_100_0.txt"
 with open(filename, 'r') as f:
     f.readline()
     f.readline()
